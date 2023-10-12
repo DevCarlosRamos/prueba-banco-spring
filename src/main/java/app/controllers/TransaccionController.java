@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import app.models.entities.Transaccion;
 import app.services.TransaccionService;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -20,5 +21,10 @@ public class TransaccionController {
     @PostMapping("/hacer-cambio")
     public Mono<String> realizarTransaccion(@RequestBody Transaccion transaccion) {
         return transaccionService.cambiarDinero(transaccion);
+    }
+    
+    @GetMapping("/{emisorId}")
+    public Flux<Transaccion> getTransaccionesPorEmisor(@PathVariable String emisorId) {
+        return transaccionService.getTransaccionesPorEmisor(emisorId);
     }
 }

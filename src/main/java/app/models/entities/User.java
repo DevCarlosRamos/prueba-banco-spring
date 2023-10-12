@@ -10,7 +10,8 @@ public class User {
     private String nombre;
     private String email;
     private String password;
-    private double fondo;
+    private double fondoSOL;
+    private double fondoUSD;
     private String token;
     
     
@@ -22,22 +23,31 @@ public class User {
 		this.token = token;
 	}
 	
-	public double getFondo() {
-		return fondo;
+	public double getFondoSOL() {
+		return fondoSOL;
 	}
 
-	public void setFondo(double fondo) {
-		this.fondo = fondo;
+	public void setFondoSOL(double fondoSOL) {
+		this.fondoSOL = fondoSOL;
+	}
+
+	public double getFondoUSD() {
+		return fondoUSD;
+	}
+
+	public void setFondoUSD(double fondoUSD) {
+		this.fondoUSD = fondoUSD;
 	}
 
 	public User() {
     }
 
-    public User(String email,String nombre, String password, double fondo) {
+    public User(String email,String nombre, String password, double fondoSOL, double fondoUSD) {
         this.email = email;
         this.nombre = nombre;
         this.password = password;
-        this.fondo = fondo;
+        this.fondoSOL = fondoSOL;
+        this.fondoUSD = fondoUSD;
     }
     
    

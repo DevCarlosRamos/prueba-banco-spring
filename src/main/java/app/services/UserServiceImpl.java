@@ -28,7 +28,8 @@ public class UserServiceImpl implements UserService {
                 		user.getEmail(),
                 		user.getNombre(), 
                 		user.getPassword(),
-                		user.getFondo())))
+                		user.getFondoSOL(),
+                		user.getFondoUSD())))
         		.cast(User.class);
     }
 
@@ -58,7 +59,8 @@ public class UserServiceImpl implements UserService {
                     existingUser.setNombre(user.getNombre());
                     existingUser.setEmail(user.getEmail());
                     existingUser.setPassword(user.getPassword());
-                    existingUser.setFondo(user.getFondo());
+                    existingUser.setFondoSOL(user.getFondoSOL());
+                    existingUser.setFondoUSD(user.getFondoUSD());
                     return userRepository.save(existingUser);
                 })
                 .switchIfEmpty(Mono.error(new RuntimeException("User not found")));

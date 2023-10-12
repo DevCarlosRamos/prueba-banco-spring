@@ -7,6 +7,7 @@ import app.models.entities.Transaccion;
 import app.models.repository.TipoCambioRepository;
 import app.models.repository.TransaccionRepository;
 import app.models.repository.UserRepository;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -41,12 +42,12 @@ public class TransaccionServiceImpl implements TransaccionService{
 	                            double montoOrigen = transaccion.getMonto();
 	                            double montoDestino = montoOrigen * tipoCambio.getTipoCambio();
 
-	                            if (userEmisor.getFondo() < montoOrigen) {
+	                            if (userEmisor.getFondoSOL() < montoOrigen) {
 	                                return Mono.error(new RuntimeException("Fondos insuficientes en la cuenta del emisor"));
 	                            }
 
-	                            userEmisor.setFondo(userEmisor.getFondo() - montoOrigen);
-	                            userReceptor.setFondo(userReceptor.getFondo() + montoDestino);
+	                            userEmisor.setFondoSOL(userEmisor.getFondoSOL() - montoOrigen);
+	                            userReceptor.setFondoUSD(userReceptor.getFondoUSD() + montoDestino);
 
 	                            // Actualizar usuarios
 	                            Mono<Void> updateEmisorMono = userRepository.save(userEmisor).then();
@@ -61,6 +62,11 @@ public class TransaccionServiceImpl implements TransaccionService{
 	                });
 	        });
 	}
+	
+	@Override
+    public Flux<Transaccion> getTransaccionesPorEmisor(String emisorId) {
+        return transaccionRepository.findByEmisorId(emisorId);
+    }
 
 
 }
