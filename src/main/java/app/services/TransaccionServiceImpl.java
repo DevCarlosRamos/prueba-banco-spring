@@ -3,9 +3,7 @@ package app.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import app.models.entities.TipoCambio;
 import app.models.entities.Transaccion;
-import app.models.entities.User;
 import app.models.repository.TipoCambioRepository;
 import app.models.repository.TransaccionRepository;
 import app.models.repository.UserRepository;
@@ -48,9 +46,7 @@ public class TransaccionServiceImpl implements TransaccionService{
 	                            }
 
 	                            userEmisor.setFondo(userEmisor.getFondo() - montoOrigen);
-	                            userEmisor.setTransaccion(transaccion);
 	                            userReceptor.setFondo(userReceptor.getFondo() + montoDestino);
-	                            userReceptor.setTransaccion(transaccion);
 
 	                            // Actualizar usuarios
 	                            Mono<Void> updateEmisorMono = userRepository.save(userEmisor).then();

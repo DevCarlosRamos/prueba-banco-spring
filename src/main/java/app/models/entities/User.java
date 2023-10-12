@@ -1,7 +1,5 @@
 package app.models.entities;
 
-import java.util.List;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,19 +12,10 @@ public class User {
     private String password;
     private double fondo;
     private String token;
-    private List<Transaccion> transaccion;
     
     
     public String getToken() {
 		return token;
-	}
-
-	public List<Transaccion> getTransaccion() {
-		return transaccion;
-	}
-
-	public void setTransaccion(Transaccion transaccion) {
-		this.transaccion.add(transaccion);
 	}
 
 	public void setToken(String token) {

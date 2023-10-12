@@ -12,12 +12,12 @@ import reactor.core.publisher.Mono;
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-    private final JwtUtil jwtUtil;
+    //private final JwtUtil jwtUtil;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, JwtUtil jwtUtil) {
         this.userRepository = userRepository;
-        this.jwtUtil = jwtUtil;
+        //this.jwtUtil = jwtUtil;
     }
 
     @Override
